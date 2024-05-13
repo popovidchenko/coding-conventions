@@ -324,10 +324,11 @@ Semicolons *must not* end lines and *must not* be used to put two statements on 
 Maximum line length *should* be 80 characters.
 
 Explicit exceptions to the 80 character limit:
-    - Long import statements.
-    - URLs, pathnames, or long flags in comments.
-    - Long string module-level constants not containing whitespace that would be inconvenient to split across lines such as URLs or pathnames.
-    - Pylint disable comments [e.g.: `# pylint: disable=invalid-name`].
+
+- Long import statements.
+- URLs, pathnames, or long flags in comments.
+- Long string module-level constants not containing whitespace that would be inconvenient to split across lines such as URLs or pathnames.
+- Pylint disable comments [e.g.: `# pylint: disable=invalid-name`].
 
 A backslash *must not* be used for [explicit line continuation](https://docs.python.org/3/reference/lexical_analysis.html#explicit-line-joining).
 
