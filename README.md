@@ -1417,7 +1417,7 @@ except OSError:
 
 ## 5.13 True/False Evaluations
 
-Implicit false *should* be used whenever possible, e.g., `if foo:` rather than `if foo != []:`.
+Implicit False *should* be used whenever possible, e.g., `if foo:` rather than `if foo != []:`.
 
 There are a few caveats:
 
@@ -1425,9 +1425,9 @@ There are a few caveats:
 
 2. Never compare a boolean variable to `False` using `==`. Use `if not x:` instead. In order to distinguish `False` from `None` then chain the expressions, such as `if not x and x is not None:`.
 
-3. For sequences [strings, lists, tuples], use the fact that empty sequences are false, so `if seq:` and `if not seq:` are preferable to `if len(seq):` and `if not len(seq):` respectively.
+3. For sequences [strings, lists, tuples], use the fact that empty sequences are False, so `if seq:` and `if not seq:` are preferable to `if len(seq):` and `if not len(seq):` respectively.
 
-4. When handling integers, implicit false may involve more risk than benefit [i.e., accidentally handling `None` as 0]. Compare a value which is known to be an integer [and is not the result of `len()`] against the integer 0.
+4. When handling integers, implicit False may involve more risk than benefit [i.e., accidentally handling `None` as 0]. Compare a value which is known to be an integer [and is not the result of `len()`] against the integer 0.
 
 ```python
 # GOOD:
@@ -1454,7 +1454,7 @@ def f(x = None):
     x = x or []
 ```
 
-5. Note that `"0"` [i.e., `0` as string] evaluates to true.
+5. Note that `"0"` [i.e., `0` as string] evaluates to True.
 
 ## 5.14 Lexical Scoping
 
