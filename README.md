@@ -31,6 +31,7 @@ The current version of the document is not final and may be updated as necessary
   - [1.2 Naming Conventions](#12-naming-conventions)
   - [1.3 Names to Avoid](#13-names-to-avoid)
   - [1.4 Mathematical Notation](#14-mathematical-notation)
+  - [1.5 Placeholder Variable](#15-placeholder-variable)
 - [2 Сode structure](#2-сode-structure)
   - [2.1 Shebang Line](#21-shebang-line)
   - [2.2 Imports](#22-imports)
@@ -150,6 +151,21 @@ Prepending a double underscore `__` [aka “dunder”] to an instance variable o
 ## 1.4 Mathematical Notation
 
 For mathematically heavy code, short variable names that would otherwise violate the style guide are preferred when they match established notation in a reference paper or algorithm. When doing so, reference the source of all naming conventions in a comment or docstring or, if the source is not accessible, clearly document the naming conventions. Prefer [PEP8](https://peps.python.org/pep-0008/)-compliant `descriptive_names` for public APIs, which are much more likely to be encountered out of context.
+
+## 1.5 Placeholder Variable
+
+The underscore `_` *should* be used as a placeholder variable when a value is required syntactically but is not used in the logic of your code. This makes it clear to readers that the variable is intentionally unused.
+
+```python
+# GOOD: Looping through a list without using the index or value.
+for _ in range(10):
+    ...
+
+# GOOD: Unpacking values and ignoring certain elements.
+_, value, _ = get_values()
+```
+
+Avoid using `_` for any variable that will be referenced or manipulated in the code. Reserve its use strictly for cases where the value is irrelevant and unused.
 
 # 2 Сode structure
 
