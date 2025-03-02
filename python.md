@@ -293,8 +293,7 @@ import collections
 import queue
 import sys
 
-from absl import app
-from absl import flags
+from absl import app, flags
 import bs4
 import cryptography
 import tensorflow as tf
@@ -303,9 +302,7 @@ from book.genres import scifi
 from myproject.backend import huxley
 from myproject.backend.hgwells import time_machine
 from myproject.backend.state_machine import main_loop
-from otherproject.ai import body
-from otherproject.ai import mind
-from otherproject.ai import soul
+from otherproject.ai import body, mind, soul
 ```
 
 ## 2.3 Main
@@ -337,9 +334,9 @@ Semicolons *must not* end lines and *must not* be used to put two statements on 
 
 ## 3.2 Line length
 
-Maximum line length *should* be 80 characters.
+Maximum line length *should* be 100 characters.
 
-Explicit exceptions to the 80 character limit:
+Explicit exceptions to the 100 character limit:
 
 - Long import statements.
 - URLs, pathnames, or long flags in comments.
@@ -354,8 +351,8 @@ Note that this rule doesn't prohibit backslash-escaped newlines within strings [
 
 ```python
 # GOOD:
-foo_bar(self, width, height, color = "black", design = None, x = "foo",
-        emphasis = None, highlight = 0)
+foo_bar(self, width, height, color="black", design=None, x="foo",
+        emphasis=None, highlight=0)
 ```
 
 ```python
@@ -401,7 +398,7 @@ Prefer to break lines at the highest possible syntactic level. If it is necessar
 ```python
 # GOOD:
 bridgekeeper.answer(
-    name = "Arthur", quest = questlib.find(owner = "Arthur", perilous = True))
+    name="Arthur", quest=questlib.find(owner="Arthur", perilous=True))
 
 answer = (a_long_line().of_chained_methods()
           .that_eventually_provides().an_answer())
@@ -416,8 +413,8 @@ if (
 
 ```python
 # BAD:
-bridgekeeper.answer(name = "Arthur", quest = questlib.find(
-    owner = "Arthur", perilous = True))
+bridgekeeper.answer(name="Arthur", quest=questlib.find(
+    owner="Arthur", perilous=True))
 
 answer = a_long_line().of_chained_methods().that_eventually_provides(
     ).an_answer()
@@ -666,18 +663,18 @@ Whitespace *must* be used according to the rules below:
     x<1
     ```
 
-6. Use spaces around `=` when passing keyword arguments or defining a default parameter value.
+6. Don't use spaces around `=` when passing keyword arguments or defining a default parameter value, with one exception: when a type annotation is present, do use spaces around the `=` for the default parameter value.
 
     ```python
     # GOOD:
-    def complex(real, imag = 0.0): return Magic(r = real, i = imag)
-    def complex(real, imag: float = 0.0): return Magic(r = real, i = imag)
+    def complex(real, imag=0.0): return Magic(r=real, i=imag)
+    def complex(real, imag: float = 0.0): return Magic(r=real, i=imag)
     ```
 
     ```python
     # BAD:
-    def complex(real, imag=0.0): return Magic(r=real, i=imag)
-    def complex(real, imag: float=0.0): return Magic(r=real, i=imag)
+    def complex(real, imag = 0.0): return Magic(r = real, i = imag)
+    def complex(real, imag: float=0.0): return Magic(r = real, i = imag)
     ```
 
 7. Don't use spaces to vertically align tokens on consecutive lines, since it becomes a maintenance burden [applies to `:`, `=`, etc.]:
@@ -741,9 +738,9 @@ When writing more [encouraged], this must be followed by a blank line, followed 
 
 ## 4.2 Modules
 
-Files *must* begin with a docstring describing the contents, usage of the module, author's name, e-mail, and the date of file creation.
+Files *must* begin with a docstring describing the content of the module.
 
-The module docstring *may* also include the file name, project name, licence, etc.
+The module docstring *may* also include usage of the module, author's name, e-mail, file name, file creation date, project name, licence, etc.
 
 ```python
 # EXAMPLE:
@@ -757,9 +754,6 @@ examples.
 Typical usage example:
   foo = ClassFoo()
   bar = foo.FunctionBar()
-
-Author: Vladimir Popovidchenko (popovidchenko@gmail.com)
-File Created: 01.01.2024
 """
 ```
 
@@ -1312,7 +1306,7 @@ Multi-line strings do not flow with the indentation of the rest of the program. 
 
 ```python
 # BAD:
-    long_string = """This is pretty ugly.
+long_string = """This is pretty ugly.
 Don't do this.
 """
 ```
@@ -1364,7 +1358,7 @@ logger.info("TensorFlow Version is: %s", tf.__version__)
 import os
 from absl import logging
 
-logging.info("Current $PAGER is: %s", os.getenv("PAGER", default = ""))
+logging.info("Current $PAGER is: %s", os.getenv("PAGER", default=""))
 
 homedir = os.getenv("HOME")
 if homedir is None or not os.access(homedir, os.W_OK):
@@ -1377,7 +1371,7 @@ import os
 from absl import logging
 
 logging.info("Current $PAGER is:")
-logging.info(os.getenv("PAGER", default = ""))
+logging.info(os.getenv("PAGER", default=""))
 
 homedir = os.getenv("HOME")
 if homedir is None or not os.access(homedir, os.W_OK):
@@ -1453,7 +1447,7 @@ if not users:
 if i % 10 == 0:
     self.handle_multiple_of_ten()
 
-def f(x = None):
+def f(x=None):
     if x is None:
         x = []
 ```
@@ -1466,7 +1460,7 @@ if len(users) == 0:
 if not i % 10:
     self.handle_multiple_of_ten()
 
-def f(x = None):
+def f(x=None):
     x = x or []
 ```
 
@@ -1882,7 +1876,7 @@ A type variable *must* have a descriptive name, unless it meets all of the follo
 _T = TypeVar("_T")
 _P = ParamSpec("_P")
 AddableType = TypeVar("AddableType", int, float, str)
-AnyFunction = TypeVar("AnyFunction", bound = Callable)
+AnyFunction = TypeVar("AnyFunction", bound=Callable)
 ```
 
 ```python
@@ -1890,7 +1884,7 @@ AnyFunction = TypeVar("AnyFunction", bound = Callable)
 T = TypeVar("T")
 P = ParamSpec("P")
 _T = TypeVar("_T", int, float, str)
-_F = TypeVar("_F", bound = Callable)
+_F = TypeVar("_F", bound=Callable)
 ```
 
 ### 5.20.9 String types
@@ -1933,7 +1927,7 @@ If there is a collision between a type and an existing name in a module, import 
 from typing import Any as AnyType
 ```
 
-Where possible, built-in types *should* be used as annotations. Python supports type annotations using parametric container types via [PEP-585](https://peps.python.org/pep-0585/)
+Where possible, built-in types *must* be used as annotations. Python supports type annotations using parametric container types via [PEP-585](https://peps.python.org/pep-0585/)
 
 ```python
 # GOOD:
